@@ -3,7 +3,7 @@
 A realtime streaming process for location information data, including aggregation and visualization.
 
 
-# Architecture
+# architecture
 
 * kafka
 * spark (structured streaming)
