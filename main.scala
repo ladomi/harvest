@@ -58,7 +58,7 @@ val query = df.writeStream
   // .format("kafka")
   // .option("kafka.bootstrap.servers", "host1:port1,host2:port2")
   // .option("topic", "topic1")
-  .trigger(Trigger.Continuous("2 second"))  // only change in query
+  // .trigger(Trigger.Continuous("2 second"))  // only change in query
   .start()
 
 query.awaitTermination()

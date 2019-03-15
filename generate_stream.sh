@@ -20,9 +20,8 @@ echo "========================================"
 
 # your process start
 
-rm -f stream_data.tsv
-
-touch stream_data.tsv
+# rm -f stream_data.tsv
+# touch stream_data.tsv
 
 i=0
 
@@ -34,9 +33,10 @@ do
 	# echo "${id}	$(date "+%Y%m%d%H%M%S%N")	${RANDOM}	${RANDOM}	${RANDOM}" | kafka-console-producer --broker-list localhost:9092 --topic test
 	# echo "${i}" | kafka-console-producer --broker-list localhost:9092 --topic test
 	# sleep 1
-	sleep 0.5
+	# sleep 0.5
+	sleep 0.1
 	i=$((i + 1))
-	echo $i
+	# echo $i
 done
 
 echo "elapsed time: $(expr $(date +%s) - ${start_time})"
