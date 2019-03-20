@@ -31,6 +31,7 @@
 
 
 import org.apache.spark.sql.streaming.Trigger
+import org.apache.spark.sql.types.{StringType, StructType, DoubleType}
 
 sc.setLogLevel("ERROR")
 
@@ -47,11 +48,19 @@ val lines = spark
   .option("kafka.bootstrap.servers", "localhost:9092")
   .option("subscribe", "test")
   .load()
-  .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+  // .selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+  .select( $"value" cast StringType as "value" )
 
 val df = lines
   .select($"value")
-  .select( split( $"value", ",") )
+  .select( split( $"value", "\t").as("value_list") )
+  .select(
+    $"value_list".getItem(0) cast StringType as "id",
+    $"value_list".getItem(1) cast StringType as "timestamp",
+    $"value_list".getItem(2) cast DoubleType as "lat",
+    $"value_list".getItem(3) cast DoubleType as "lon",
+    $"value_list".getItem(4) cast DoubleType as "err"
+  )
 
 val query = df.writeStream
   .format("console")

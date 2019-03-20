@@ -28,15 +28,20 @@ i=0
 while [ $i -lt 100000 ]
 do
 	id=namioka
+	dttm=$(date "+%Y%m%d%H%M%S%N")
+	# dttm=${RANDOM}
+	lat=${RANDOM}
+	lon=${RANDOM}
+	err=${RANDOM}
 	# echo "${id}	$(date "+%Y%m%d%H%M%S%N")	${RANDOM}	${RANDOM}	${RANDOM}" >> stream_data.tsv
-	echo "${id},$(date "+%Y%m%d%H%M%S%N"),${RANDOM},${RANDOM},${RANDOM}" >> stream_data.tsv
+	echo "${id}	${dttm}	${lat}	${lon}	${err}" >> stream_data.tsv
 	# echo "${id}	$(date "+%Y%m%d%H%M%S%N")	${RANDOM}	${RANDOM}	${RANDOM}" | kafka-console-producer --broker-list localhost:9092 --topic test
 	# echo "${i}" | kafka-console-producer --broker-list localhost:9092 --topic test
 	# sleep 1
 	# sleep 0.5
 	# sleep 0.1
 	i=$((i + 1))
-	# echo $i
+	echo $i
 done
 
 echo "elapsed time: $(expr $(date +%s) - ${start_time})"
