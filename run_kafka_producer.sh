@@ -22,6 +22,10 @@ echo "========================================"
 
 echo "elapsed time: $(expr $(date +%s) - ${start_time})"
 
+
+rm -f stream_data.tsv
+touch stream_data.tsv
+
 tail -f stream_data.tsv | kafka-console-producer --broker-list localhost:9092 --topic test
 
 

@@ -25,7 +25,7 @@ echo "========================================"
 
 i=0
 
-while [ $i -lt 1000 ]
+while [ $i -lt 100000 ]
 do
 	id=namioka
 	# echo "${id}	$(date "+%Y%m%d%H%M%S%N")	${RANDOM}	${RANDOM}	${RANDOM}" >> stream_data.tsv
@@ -34,7 +34,7 @@ do
 	# echo "${i}" | kafka-console-producer --broker-list localhost:9092 --topic test
 	# sleep 1
 	# sleep 0.5
-	sleep 0.1
+	# sleep 0.1
 	i=$((i + 1))
 	# echo $i
 done
